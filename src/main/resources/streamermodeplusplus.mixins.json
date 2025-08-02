@@ -1,0 +1,14 @@
+{
+	"required": true,
+	"package": "com.magnet.streamermodeplusplus.mixins",
+	"compatibilityLevel": "JAVA_21",
+	"mixins": [
+		"MixinDebugHud"
+	],
+	"injectors": {
+		"defaultRequire": 1
+	},
+	"overwrites": {
+		"requireAnnotations": true
+	}
+}
