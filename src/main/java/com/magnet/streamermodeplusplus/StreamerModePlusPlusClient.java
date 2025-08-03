@@ -22,10 +22,10 @@ public class StreamerModePlusPlusClient implements ClientModInitializer
 	public static boolean mixinHideChunkInfoDebugHudEnabled = false;
 	public static boolean mixinHideFaceInfoDebugHudEnabled = false;
 	
-	public String hiddenCoordsMessage = "XYZ: HIDDEN FROM STREAMERMODEPLUSPLUS :)";
-	public String hiddenBlockMessage = "Block: HIDDEN FROM STREAMERMODEPLUSPLUS :)";
-	public String hiddenChunkMessage = "Chunk: HIDDEN FROM STREAMERMODEPLUSPLUS :)";
-	public String hiddenFaceMessage = "Facing: HIDDEN FROM STREAMERMODEPLUSPLUS :)";
+	public String hiddenCoordsMessage = "XYZ: HIDDEN FROM STREAMERMODE++";
+	public String hiddenBlockMessage = "Block: HIDDEN FROM STREAMERMODE++";
+	public String hiddenChunkMessage = "Chunk: HIDDEN FROM STREAMERMODE++";
+	public String hiddenFaceMessage = "Facing: HIDDEN FROM STREAMERMODE++";
 	
 	private static KeyBinding MenuBind;
 

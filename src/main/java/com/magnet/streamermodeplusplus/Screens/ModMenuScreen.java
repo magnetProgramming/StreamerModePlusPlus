@@ -38,7 +38,7 @@ public class ModMenuScreen extends Screen {
             int lineColor = 0xFF444444;
             int horizontalInset = 20;
 
-            int bottomLineY = y + 140 + 16 + 14 * 4 + 25; // adjusted for new layout
+            int bottomLineY = y + 140 + 16 + 14 * 4 + 25;
             graphics.fill(x + horizontalInset, bottomLineY, x + width - horizontalInset, bottomLineY + 1, lineColor);
         });
 
