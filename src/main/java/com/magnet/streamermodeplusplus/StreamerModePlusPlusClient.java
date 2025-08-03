@@ -1,5 +1,7 @@
 package com.magnet.streamermodeplusplus;
 
+import java.util.List;
+
 import org.lwjgl.glfw.GLFW;
 
 import com.magnet.streamermodeplusplus.Events.EventDebugHud;
@@ -21,6 +23,8 @@ public class StreamerModePlusPlusClient implements ClientModInitializer
 	public static boolean mixinHideBlockInfoDebugHudEnabled = false;
 	public static boolean mixinHideChunkInfoDebugHudEnabled = false;
 	public static boolean mixinHideFaceInfoDebugHudEnabled = false;
+	public static boolean mixinHideTargetedBlockDebugHudEnabled = false;
+	public static boolean mixinHideTargetedFluidDebugHudEnabled = false;
 	
 	public String hiddenCoordsMessage = "XYZ: HIDDEN FROM STREAMERMODE++";
 	public String hiddenBlockMessage = "Block: HIDDEN FROM STREAMERMODE++";
@@ -33,7 +37,7 @@ public class StreamerModePlusPlusClient implements ClientModInitializer
         return INSTANCE;
     }
 	
-	public String getHiddenFaceMessage() {
+	public String getHiddenFaceMessage() {	
 		return hiddenFaceMessage;
 	}
 
@@ -84,29 +88,48 @@ public class StreamerModePlusPlusClient implements ClientModInitializer
 			modifyF3Coords();
 	}
 	
-	public void modifyF3Coords() 
-	{
-			EventDebugHud.EVENT.register(lines -> {
-		        for (int i = 0; i < lines.size(); i++) {
-		            String line = lines.get(i);
+	public void modifyF3Coords() {
+		EventDebugHud.EVENT.register(new EventDebugHud() {
 
-		            if (mixinHideCoordsDebugHudEnabled && line.startsWith("XYZ:")) {
-		                lines.set(i, StreamerModePlusPlusClient.INSTANCE.hiddenCoordsMessage);
-		            }
+			@Override
+			public void onLeftRender(List<String> lines) {
+				for (int i = 0; i < lines.size(); i++) {
+					String line = lines.get(i);
 
-		            if (mixinHideBlockInfoDebugHudEnabled && line.startsWith("Block:")) {
-		                lines.set(i, StreamerModePlusPlusClient.INSTANCE.hiddenBlockMessage);
-		            }
+					if (mixinHideCoordsDebugHudEnabled && line.startsWith("XYZ:")) {
+						lines.set(i, StreamerModePlusPlusClient.INSTANCE.hiddenCoordsMessage);
+					}
 
-		            if (mixinHideChunkInfoDebugHudEnabled && line.startsWith("Chunk:")) {
-		                lines.set(i, StreamerModePlusPlusClient.INSTANCE.hiddenChunkMessage);
-		            }
+					if (mixinHideBlockInfoDebugHudEnabled && line.startsWith("Block:")) {
+						lines.set(i, StreamerModePlusPlusClient.INSTANCE.hiddenBlockMessage);
+					}
 
-		            if (mixinHideFaceInfoDebugHudEnabled && line.startsWith("Facing:")) {
-		                lines.set(i, StreamerModePlusPlusClient.INSTANCE.hiddenFaceMessage);
-		            }
-		        }
-			});
+					if (mixinHideChunkInfoDebugHudEnabled && line.startsWith("Chunk:")) {
+						lines.set(i, StreamerModePlusPlusClient.INSTANCE.hiddenChunkMessage);
+					}
+
+					if (mixinHideFaceInfoDebugHudEnabled && line.startsWith("Facing:")) {
+						lines.set(i, StreamerModePlusPlusClient.INSTANCE.hiddenFaceMessage);
+					}
+				}
+			}
+
+			@Override
+			public void onRightRender(List<String> lines) {
+				for (int i = 0; i < lines.size(); i++) {
+					String line = lines.get(i);
+
+					if (mixinHideTargetedBlockDebugHudEnabled && line.contains("Targeted Block:")) {
+						lines.set(i, "Targeted Block: " + StreamerModePlusPlusClient.INSTANCE.hiddenBlockMessage);
+					}
+
+					if (mixinHideTargetedFluidDebugHudEnabled && line.contains("Targeted Fluid:")) {
+						lines.set(i, "Targeted Fluid: " + StreamerModePlusPlusClient.INSTANCE.hiddenBlockMessage);
+					}
+				}
+			}
+		});
 	}
+
 
 }

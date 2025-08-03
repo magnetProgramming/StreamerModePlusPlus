@@ -23,8 +23,24 @@ public class MixinDebugHud {
         
         try 
         {
-        	EventDebugHud.EVENT.invoker().onRender(lines);
+        	EventDebugHud.EVENT.invoker().onLeftRender(lines);
 
+        } catch (Exception ex) 
+        {
+        	System.out.println(ex.toString());
+        }
+    }
+    
+    @Inject(method = "getRightText", at = @At("RETURN"), cancellable = true)
+    private void onGetRightText(CallbackInfoReturnable<List<String>> cir) {
+        List<String> rightLines = new ArrayList<>(cir.getReturnValue());
+
+        cir.setReturnValue(rightLines); 
+        
+        try 
+        {
+        	EventDebugHud.EVENT.invoker().onRightRender(rightLines);
+        	System.out.println("Success");
         } catch (Exception ex) 
         {
         	System.out.println(ex.toString());

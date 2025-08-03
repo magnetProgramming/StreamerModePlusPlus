@@ -4,5 +4,7 @@
 	"key.streamermodeplusplus.toggle_blocked_F3_coords_option": "Hide F3 Coords",
 	"key.streamermodeplusplus.toggle_hide_F3_block_info_option": "Hide F3 Block Info",
 	"key.streamermodeplusplus.toggle_hide_F3_chunk_info_option": "Hide F3 Chunk Info",
-	"key.streamermodeplusplus.toggle_hide_F3_face_info_option": "Hide F3 Face Info"
+	"key.streamermodeplusplus.toggle_hide_F3_face_info_option": "Hide F3 Face Info",
+	"key.streamermodeplusplus.toggle_hide_F3_targeted_block_info_option": "Hide F3 Targeted Block",
+	"key.streamermodeplusplus.toggle_hide_F3_targeted_fluid_info_option": "Hide F3 Targeted Fluid"
 }

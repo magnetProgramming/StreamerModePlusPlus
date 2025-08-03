@@ -86,6 +86,21 @@ public class ModMenuScreen extends Screen {
                 TooltipData.builder().text("Toggle hiding F3 face info").build()
             )
         );
+                
+        optionList.addOptionEntry(
+                new SpruceCheckboxBooleanOption(
+                    "key.streamermodeplusplus.toggle_hide_F3_targeted_block_info_option",
+                    () -> StreamerModePlusPlusClient.mixinHideTargetedBlockDebugHudEnabled,
+                    newValue -> StreamerModePlusPlusClient.mixinHideTargetedBlockDebugHudEnabled = newValue,
+                    TooltipData.builder().text("Toggle hiding F3 Targeted Block info").build()
+                ),
+                new SpruceCheckboxBooleanOption(
+                    "key.streamermodeplusplus.toggle_hide_F3_targeted_fluid_info_option",
+                    () -> StreamerModePlusPlusClient.mixinHideTargetedFluidDebugHudEnabled,
+                    newValue -> StreamerModePlusPlusClient.mixinHideTargetedFluidDebugHudEnabled = newValue,
+                    TooltipData.builder().text("Toggle hiding F3 Targeted Fluid info").build()
+                )
+            );
 
         container.addChild(optionList);
 
