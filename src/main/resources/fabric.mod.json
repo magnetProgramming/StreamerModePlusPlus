@@ -1,36 +1,45 @@
 {
-	"schemaVersion": 1,
-	"id": "streamermodeplusplus",
-	"version": "${version}",
-	"name": "StreamerModePlusPlus",
-	"description": "This is an example description! Tell everyone what your mod is about!",
-	"authors": [
-		"magnetProgramming"
-	],
-	"contact": {
-		"email": "magnet.magnetic448@passfwd.com"
-	},
-	"license": "All Rights Reserved",
-	"icon": "assets/streamermodeplusplus/icon.png",
-	"environment": "*",
-	"entrypoints": {
-		"main": [
-			"com.magnet.streamermodeplusplus.StreamerModePlusPlus"
-		],
-		"client": [
-			"com.magnet.streamermodeplusplus.StreamerModePlusPlusClient"
-		]
-	},
-	"mixins": [
-		"streamermodeplusplus.mixins.json"
-	],
-	"depends": {
-		"fabricloader": ">=0.16.14",
-		"minecraft": "~1.21.8",
-		"java": ">=21",
-		"fabric-api": "*"
-	},
-	"suggests": {
-		"another-mod": "*"
-	}
+  "schemaVersion": 1,
+  "id": "streamermodeplusplus",
+  "version": "${version}",
+  "name": "StreamerMode++",
+  "description": "A mod designed for streamers to hide sensitive info like coordinates during F3, perfect for anarchy servers and beyond.",
+  "authors": [
+    "magnetProgramming"
+  ],
+  "contact": {
+    "email": "magnet.magnetic448@passfwd.com",
+    "homepage": "https://github.com/magnetProgramming/StreamerModePlusPlus",
+    "issues": "https://github.com/magnetProgramming/StreamerModePlusPlus/issues",
+    "sources": "https://github.com/magnetProgramming/StreamerModePlusPlus"
+  },
+  "license": "BSD 2-Clause License",
+  "icon": "assets/streamermodeplusplus/icon.png",
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+      "com.magnet.streamermodeplusplus.StreamerModePlusPlus"
+    ],
+    "client": [
+      "com.magnet.streamermodeplusplus.StreamerModePlusPlusClient"
+    ]
+  },
+  "mixins": [
+    "streamermodeplusplus.mixins.json"
+  ],
+  "depends": {
+    "fabricloader": ">=0.16.14",
+    "minecraft": "~1.21.8",
+    "java": ">=21",
+    "fabric-api": "*",
+    "modmenu": ">=6.0.0",
+    "spruceui": ">=8.0.2"
+  },
+  "custom": {
+    "modmenu": {
+      "modmenu_description": "Hides coordinates, IPs, and other sensitive info while streaming. Great for anarchy servers.",
+      "translation": false,
+      "badges": ["client"]
+    }
+  }
 }

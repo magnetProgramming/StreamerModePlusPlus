@@ -21,28 +21,36 @@ repositories {
 			name = "Gegy"
 			url = uri("https://maven.gegy.dev")
 		}
+		
+		maven {
+    	  name = "Terraformers"
+    	  url = "https://maven.terraformersmc.com/"
+  	}
 }
 
 dependencies {
-	// To change the versions see the gradle.properties file
-	minecraft "com.mojang:minecraft:${project.minecraft_version}"
-	mappings "net.fabricmc:yarn:${project.yarn_mappings}:v2"
-	modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
+    minecraft "com.mojang:minecraft:${project.minecraft_version}"
+    mappings "net.fabricmc:yarn:${project.yarn_mappings}:v2"
 
-	// Fabric API. This is technically optional, but you probably want it anyway.
-	modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
-	
-	include(modImplementation("dev.lambdaurora:spruceui:${project.spruceui_version}"))
-	include("dev.yumi.mc.core:yumi-mc-foundation:1.0.0-alpha.5+1.21.1")
-	
+    modImplementation("net.fabricmc:fabric-loader:${project.loader_version}")
+    modImplementation("net.fabricmc.fabric-api:fabric-api:${project.fabric_version}")
+
+    include(modImplementation("dev.lambdaurora:spruceui:${project.spruceui_version}"))
+    include(modImplementation("dev.yumi.mc.core:yumi-mc-foundation:1.0.0-alpha.6+1.21.1")) 
+
+    modImplementation("com.terraformersmc:modmenu:${project.modmenu_version}")
 }
 
-processResources {
-	inputs.property "version", project.version
 
-	filesMatching("fabric.mod.json") {
-		expand "version": inputs.properties.version
-	}
+
+
+
+processResources {
+    inputs.property "version", project.version
+
+    filesMatching("fabric.mod.json") {
+        expand "version": project.version
+    }
 }
 
 tasks.withType(JavaCompile).configureEach {
@@ -79,5 +87,10 @@ publishing {
 			name = "Gegy"
 			url = uri("https://maven.gegy.dev")
 		}
+		
+		maven {
+    	  name = "Terraformers"
+    	  url = "https://maven.terraformersmc.com/"
+  		}
 	}
 }

@@ -2,14 +2,21 @@ package com.magnet.streamermodeplusplus.Events;
 
 import java.util.List;
 
-public class EventDebugHud extends Event 
+import net.fabricmc.fabric.api.event.Event;
+import net.fabricmc.fabric.api.event.EventFactory;
+
+public interface EventDebugHud
 {
+	 
+	void onRender(List<String> lines);
 	
-	public List<String> lines;
-	
-    public EventDebugHud(List<String> lines) 
-    {
-    	this.lines = lines;
-    }
+    Event<EventDebugHud> EVENT = EventFactory.createArrayBacked(
+            EventDebugHud.class,
+            (listeners) -> (lines) -> {
+                for (EventDebugHud listener : listeners) {
+                    listener.onRender(lines);
+                }
+            }
+        );
 }
 

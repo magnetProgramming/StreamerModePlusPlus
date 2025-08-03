@@ -8,7 +8,6 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
-import com.magnet.streamermodeplusplus.StreamerModePlusPlus;
 import com.magnet.streamermodeplusplus.Events.EventDebugHud;
 
 import net.minecraft.client.gui.hud.DebugHud;
@@ -24,8 +23,8 @@ public class MixinDebugHud {
         
         try 
         {
-        	StreamerModePlusPlus.eventBus.post(new EventDebugHud(lines));
-        	System.out.println("Success");
+        	EventDebugHud.EVENT.invoker().onRender(lines);
+
         } catch (Exception ex) 
         {
         	System.out.println(ex.toString());
