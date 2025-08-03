@@ -14,6 +14,8 @@ The default key to open the menu is `-` (minus key), but you can change it in th
 
 Good for anarchy servers or just keeping your spot secret.
 
+Also are icon is pretty trash so if you can make a better one please do. 😭
+
 ## Screenshots
 [![Screenshot 1](https://i.ibb.co/bMgHz2mY/SS1.png)](https://ibb.co/PvZTw9J)
 
