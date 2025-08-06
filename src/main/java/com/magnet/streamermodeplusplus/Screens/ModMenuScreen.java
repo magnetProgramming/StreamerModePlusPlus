@@ -24,7 +24,7 @@ public class ModMenuScreen extends Screen {
     }
 
     @Override
-    protected void init() {	
+    protected void init() {
         super.init();
 
         container = new SpruceContainerWidget(Position.of(0, 0), this.width, this.height);
@@ -32,14 +32,7 @@ public class ModMenuScreen extends Screen {
             int x = widget.getX();
             int y = widget.getY();
             int width = widget.getWidth();
-
             graphics.fill(x, y, x + width, y + widget.getHeight(), 0x88000000);
-
-            int lineColor = 0xFF444444;
-            int horizontalInset = 20;
-
-            int bottomLineY = y + 140 + 16 + 14 * 4 + 25;
-            graphics.fill(x + horizontalInset, bottomLineY, x + width - horizontalInset, bottomLineY + 1, lineColor);
         });
 
         SpruceLabelWidget label = new SpruceLabelWidget(
@@ -86,29 +79,29 @@ public class ModMenuScreen extends Screen {
                 TooltipData.builder().text("Toggle hiding F3 face info").build()
             )
         );
-                
+
         optionList.addOptionEntry(
-                new SpruceCheckboxBooleanOption(
-                    "key.streamermodeplusplus.toggle_hide_F3_targeted_block_info_option",
-                    () -> StreamerModePlusPlusClient.mixinHideTargetedBlockDebugHudEnabled,
-                    newValue -> StreamerModePlusPlusClient.mixinHideTargetedBlockDebugHudEnabled = newValue,
-                    TooltipData.builder().text("Toggle hiding F3 Targeted Block info").build()
-                ),
-                new SpruceCheckboxBooleanOption(
-                    "key.streamermodeplusplus.toggle_hide_F3_targeted_fluid_info_option",
-                    () -> StreamerModePlusPlusClient.mixinHideTargetedFluidDebugHudEnabled,
-                    newValue -> StreamerModePlusPlusClient.mixinHideTargetedFluidDebugHudEnabled = newValue,
-                    TooltipData.builder().text("Toggle hiding F3 Targeted Fluid info").build()
-                )
-            );
+            new SpruceCheckboxBooleanOption(
+                "key.streamermodeplusplus.toggle_hide_F3_targeted_block_info_option",
+                () -> StreamerModePlusPlusClient.mixinHideTargetedBlockDebugHudEnabled,
+                newValue -> StreamerModePlusPlusClient.mixinHideTargetedBlockDebugHudEnabled = newValue,
+                TooltipData.builder().text("Toggle hiding F3 Targeted Block info").build()
+            ),
+            new SpruceCheckboxBooleanOption(
+                "key.streamermodeplusplus.toggle_hide_F3_targeted_fluid_info_option",
+                () -> StreamerModePlusPlusClient.mixinHideTargetedFluidDebugHudEnabled,
+                newValue -> StreamerModePlusPlusClient.mixinHideTargetedFluidDebugHudEnabled = newValue,
+                TooltipData.builder().text("Toggle hiding F3 Targeted Fluid info").build()
+            )
+        );
 
         container.addChild(optionList);
 
         int groupStartX = this.width / 2 - 90;
-        int groupStartY = 140;
+        int groupStartY = 130;
         int fieldWidth = 180;
-        int fieldHeight = 12;  
-        int fieldSpacing = 14;    
+        int fieldHeight = 12;
+        int fieldSpacing = 13;
 
         SpruceLabelWidget hiddenFieldsLabel = new SpruceLabelWidget(
             Position.of(groupStartX, groupStartY),
@@ -120,53 +113,63 @@ public class ModMenuScreen extends Screen {
         container.addChild(hiddenFieldsLabel);
 
         var client = StreamerModePlusPlusClient.getInstance();
+        int fieldX = groupStartX + 10;
+        int baseY = groupStartY + 15;
 
         SpruceTextFieldWidget coordField = SpruceTextFieldWidget.builder(
-            Position.of(groupStartX + 10, groupStartY + 16),
+            Position.of(fieldX, baseY),
             fieldWidth - 20, fieldHeight
-        ).title(Text.of("Coord Text"))
-         .placeholder(Text.of("Coord Text"))
-         .build();
+        ).title(Text.of("Coord Text")).placeholder(Text.of("Coord Text")).build();
         coordField.setText(client.getHiddenCoordsMessage());
         addDrawableChild(coordField);
 
         SpruceTextFieldWidget blockField = SpruceTextFieldWidget.builder(
-            Position.of(groupStartX + 10, groupStartY + 16 + fieldSpacing),
+            Position.of(fieldX, baseY + fieldSpacing * 1),
             fieldWidth - 20, fieldHeight
-        ).title(Text.of("Block Info Text"))
-         .placeholder(Text.of("Block Info Text"))
-         .build();
+        ).title(Text.of("Block Info Text")).placeholder(Text.of("Block Info Text")).build();
         blockField.setText(client.getHiddenBlockMessage());
         addDrawableChild(blockField);
 
         SpruceTextFieldWidget chunkField = SpruceTextFieldWidget.builder(
-            Position.of(groupStartX + 10, groupStartY + 16 + fieldSpacing * 2),
+            Position.of(fieldX, baseY + fieldSpacing * 2),
             fieldWidth - 20, fieldHeight
-        ).title(Text.of("Chunk Info Text"))
-         .placeholder(Text.of("Chunk Info Text"))
-         .build();
+        ).title(Text.of("Chunk Info Text")).placeholder(Text.of("Chunk Info Text")).build();
         chunkField.setText(client.getHiddenChunkMessage());
         addDrawableChild(chunkField);
 
         SpruceTextFieldWidget faceField = SpruceTextFieldWidget.builder(
-            Position.of(groupStartX + 10, groupStartY + 16 + fieldSpacing * 3),
+            Position.of(fieldX, baseY + fieldSpacing * 3),
             fieldWidth - 20, fieldHeight
-        ).title(Text.of("Facing Info Text"))
-         .placeholder(Text.of("Facing Info Text"))
-         .build();
+        ).title(Text.of("Facing Info Text")).placeholder(Text.of("Facing Info Text")).build();
         faceField.setText(client.getHiddenFaceMessage());
         addDrawableChild(faceField);
 
+        SpruceTextFieldWidget targetedBlockField = SpruceTextFieldWidget.builder(
+            Position.of(fieldX, baseY + fieldSpacing * 4),
+            fieldWidth - 20, fieldHeight
+        ).title(Text.of("Targeted Block Info Text")).placeholder(Text.of("Targeted Block Info Text")).build();
+        targetedBlockField.setText(client.getHiddenTargetedBlockMessage());
+        addDrawableChild(targetedBlockField);
+
+        SpruceTextFieldWidget targetedFluidField = SpruceTextFieldWidget.builder(
+            Position.of(fieldX, baseY + fieldSpacing * 5),
+            fieldWidth - 20, fieldHeight
+        ).title(Text.of("Targeted Fluid Info Text")).placeholder(Text.of("Targeted Fluid Info Text")).build();
+        targetedFluidField.setText(client.getHiddenTargetedFluidMessage());
+        addDrawableChild(targetedFluidField);
+
         this.addDrawableChild(new SpruceButtonWidget(
-            Position.of(groupStartX, groupStartY + 16 + fieldSpacing * 4 + 5),
+            Position.of(groupStartX, baseY + fieldSpacing * 6 + 3),
             fieldWidth,
-            16, 
+            16,
             Text.of("Submit"),
             btn -> {
                 client.setHiddenCoordsMessage(coordField.getText());
                 client.setHiddenBlockMessage(blockField.getText());
                 client.setHiddenChunkMessage(chunkField.getText());
                 client.setHiddenFaceMessage(faceField.getText());
+                client.setHiddenTargetedBlockMessage(targetedBlockField.getText());
+                client.setHiddenTargetedFluidMessage(targetedFluidField.getText());
             }
         ));
 

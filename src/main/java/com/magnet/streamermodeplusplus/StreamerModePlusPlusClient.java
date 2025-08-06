@@ -30,13 +30,33 @@ public class StreamerModePlusPlusClient implements ClientModInitializer
 	public String hiddenBlockMessage = "Block: HIDDEN FROM STREAMERMODE++";
 	public String hiddenChunkMessage = "Chunk: HIDDEN FROM STREAMERMODE++";
 	public String hiddenFaceMessage = "Facing: HIDDEN FROM STREAMERMODE++";
+	public String hiddenTargetedBlockMessage = "Targeted Block: HIDDEN FROM STREAMERMODE++";
+	public String hiddenTargetedFluidMessage = "Targeted Fluid: HIDDEN FROM STREAMERMODE++";
 	
 	private static KeyBinding MenuBind;
 
     public static StreamerModePlusPlusClient getInstance() {
         return INSTANCE;
     }
-	
+    
+	public String getHiddenTargetedBlockMessage() {
+		return hiddenTargetedBlockMessage;
+	}
+
+
+	public void setHiddenTargetedBlockMessage(String hiddenTargetedBlockMessage) {
+		this.hiddenTargetedBlockMessage = hiddenTargetedBlockMessage;
+	}
+
+
+	public String getHiddenTargetedFluidMessage() {
+		return hiddenTargetedFluidMessage;
+	}
+
+	public void setHiddenTargetedFluidMessage(String hiddenTargetedFluidMessage) {
+		this.hiddenTargetedFluidMessage = hiddenTargetedFluidMessage;
+	}
+
 	public String getHiddenFaceMessage() {	
 		return hiddenFaceMessage;
 	}
@@ -120,11 +140,11 @@ public class StreamerModePlusPlusClient implements ClientModInitializer
 					String line = lines.get(i);
 
 					if (mixinHideTargetedBlockDebugHudEnabled && line.contains("Targeted Block:")) {
-						lines.set(i, "Targeted Block: " + StreamerModePlusPlusClient.INSTANCE.hiddenBlockMessage);
+						lines.set(i, StreamerModePlusPlusClient.INSTANCE.hiddenTargetedBlockMessage);
 					}
 
 					if (mixinHideTargetedFluidDebugHudEnabled && line.contains("Targeted Fluid:")) {
-						lines.set(i, "Targeted Fluid: " + StreamerModePlusPlusClient.INSTANCE.hiddenBlockMessage);
+						lines.set(i, StreamerModePlusPlusClient.INSTANCE.hiddenTargetedFluidMessage);
 					}
 				}
 			}

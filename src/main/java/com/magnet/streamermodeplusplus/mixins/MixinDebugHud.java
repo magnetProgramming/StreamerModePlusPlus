@@ -40,7 +40,6 @@ public class MixinDebugHud {
         try 
         {
         	EventDebugHud.EVENT.invoker().onRightRender(rightLines);
-        	System.out.println("Success");
         } catch (Exception ex) 
         {
         	System.out.println(ex.toString());
