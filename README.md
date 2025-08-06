@@ -1,4 +1,4 @@
-# StreamerMode++ v1.0.0
+# StreamerMode++ v1.1.0
 
 This mod lets you hide parts of the F3 screen to keep your base or location private while streaming.
 
@@ -7,6 +7,8 @@ You can hide:
 - Block info  
 - Chunk info  
 - Facing direction  
+- Targeted block info  
+- Targeted fluid info  
 
 You can also change the message that shows when something’s hidden.
 
@@ -14,10 +16,11 @@ The default key to open the menu is `-` (minus key), but you can change it in th
 
 Good for anarchy servers or just keeping your spot secret.
 
-Also are icon is pretty trash so if you can make a better one please do. 😭
+Also our icon is still pretty trash so if you can make a better one please do. 😭
 
 ## Screenshots
 [![Screenshot 1](https://i.ibb.co/bMgHz2mY/SS1.png)](https://ibb.co/PvZTw9J)
 
 [![Screenshot 2](https://i.ibb.co/hxhnv2n3/SS2.png)](https://ibb.co/bjqynNyc)
+
 
